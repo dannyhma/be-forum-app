@@ -5,6 +5,7 @@ import {
   LogoutUser,
   GetUser,
 } from '../controllers/authController.js';
+import { authMiddleware } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
@@ -18,6 +19,6 @@ router.post('/login', LoginUser);
 router.get('/logout', LogoutUser);
 
 // get /api/api/v1/auth/getuser
-router.get('/getUser', GetUser);
+router.get('/getUser', authMiddleware, GetUser);
 
 export default router;
