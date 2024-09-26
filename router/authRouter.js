@@ -5,7 +5,7 @@ import {
   LogoutUser,
   GetUser,
 } from '../controllers/authController.js';
-import { authMiddleware } from '../middleware/authMiddleware.js';
+import { authMiddleware, permissonUser } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
@@ -20,5 +20,10 @@ router.get('/logout', LogoutUser);
 
 // get /api/api/v1/auth/getuser
 router.get('/getUser', authMiddleware, GetUser);
+
+// get /api/api/v1/auth/test
+router.get('/test', authMiddleware, permissonUser('admin'), (req, res) => {
+  res.status(200).json({ message: 'test success' });
+});
 
 export default router;

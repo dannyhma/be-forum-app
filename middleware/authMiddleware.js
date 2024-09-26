@@ -36,3 +36,18 @@ export const authMiddleware = async (req, res, next) => {
   req.user = currentUser;
   next();
 };
+
+export const permissonUser = (...roles) => {
+  return (req, res, next) => {
+    // ["admin", "user", "moderator"]
+    if (!roles.includes(req.user.role)) {
+      return next(
+        res.status(403).json({
+          message: 'You do not have permission to perform this action',
+        })
+      );
+    }
+
+    next();
+  };
+};
