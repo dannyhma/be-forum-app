@@ -23,7 +23,7 @@ router.get('/getUser', authMiddleware, GetUser);
 
 // get /api/api/v1/auth/test
 router.get('/test', authMiddleware, permissonUser('admin'), (req, res) => {
-  res.status(200).json({ message: 'test success' });
+  res.status(200).json({ message: 'Test success' });
 });
 
 export default router;

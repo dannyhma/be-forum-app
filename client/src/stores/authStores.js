@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import customFetch from "../api/api.js";
+import { useRouter } from "vue-router";
 
 export const useAuthStore = defineStore("user", () => {
 	const dialog = ref(false);
@@ -12,6 +13,8 @@ export const useAuthStore = defineStore("user", () => {
 			: null,
 	);
 
+	const router = useRouter();
+
 	const LoginUser = async (inputData) => {
 		try {
 			const { data } = await customFetch.post("/auth/login", {
@@ -20,13 +23,35 @@ export const useAuthStore = defineStore("user", () => {
 			});
 			currentUser.value = data.data;
 			localStorage.setItem("user", JSON.stringify(data.data));
+
 			dialog.value = false;
 			console.log(data);
+
+			router.push({ name: "dashboard" });
 		} catch (error) {
 			errorAlert.value = true;
 			errorMessage.value = error.response.data.message;
 		}
 	};
 
-	return { dialog, LoginUser, errorAlert, errorMessage };
+	const LogoutUser = async () => {
+		try {
+			localStorage.setItem("user", null);
+			currentUser.value = null;
+			await customFetch.get("/auth/logout");
+
+			router.push({ name: "home" });
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	return {
+		dialog,
+		LoginUser,
+		currentUser,
+		errorAlert,
+		errorMessage,
+		LogoutUser,
+	};
 });

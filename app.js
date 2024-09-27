@@ -25,16 +25,16 @@ if (process.env.NODE_ENV === 'development') {
 mongoose
   .connect(process.env.DATABASE, {})
   .then(() => {
-    console.log('db connected');
+    console.log('Database connected');
   })
   .catch((err) => {
-    console.error('failed to connect to mongodb', err);
+    console.error('Failed to connect to mongodb', err);
   });
 
 // endpoint
 app.get('/api/v1/test', (req, res) => {
   res.status(200).json({
-    message: 'message from express.js',
+    message: 'Message from express.js',
   });
 });
 
@@ -45,5 +45,5 @@ app.use(notFound);
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log(`example app listening on port http://localhost:${port}`);
+  console.log(`Example app listening on port http://localhost:${port}`);
 });

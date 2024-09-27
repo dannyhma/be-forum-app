@@ -43,7 +43,7 @@ export const LoginUser = asyncHandler(async (req, res) => {
   // validation if email and password are not entered
   if (!req.body.email && !req.body.password) {
     res.status(400);
-    throw new Error('email and password cannot be empty');
+    throw new Error('Email and password cannot be empty');
   }
 
   // check if the email is registered
@@ -52,7 +52,7 @@ export const LoginUser = asyncHandler(async (req, res) => {
     createSendToken(userData, 200, res);
   } else {
     res.status(400);
-    throw new Error('invalid user');
+    throw new Error('Invalid email or password');
   }
 });
 
