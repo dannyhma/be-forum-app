@@ -13,7 +13,7 @@ const user = ref(null);
 
 const getUser = async () => {
 	const { data } = await customFetch.get("/auth/getuser");
-	console.log(data);
+	// console.log(data);
 	user.value = data.user;
 };
 

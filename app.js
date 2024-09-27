@@ -1,11 +1,16 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 import cors from 'cors';
-import authRouter from './router/authRouter.js';
+import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
+
+// middleware
 import { notFound, errorHandler } from './middleware/errorHandler.js';
+
+// router
+import authRouter from './router/authRouter.js';
+import questionRouter from './router/questionRouter.js';
 
 dotenv.config();
 
@@ -32,14 +37,15 @@ mongoose
   });
 
 // endpoint
-app.get('/api/v1/test', (req, res) => {
-  res.status(200).json({
-    message: 'Message from express.js',
-  });
-});
+// app.get('/api/v1/test', (req, res) => {
+//   res.status(200).json({
+//     message: 'Message from express.js',
+//   });
+// });
 
 // parent router
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/question', questionRouter);
 
 app.use(notFound);
 app.use(errorHandler);

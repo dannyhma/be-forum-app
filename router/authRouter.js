@@ -9,19 +9,19 @@ import { authMiddleware, permissonUser } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-// post /api/api/v1/auth/register
+// post /api/v1/auth/register
 router.post('/register', RegisterUser);
 
-// post /api/api/v1/auth/login
+// post /api/v1/auth/login
 router.post('/login', LoginUser);
 
-// get /api/api/v1/auth/logout
+// get /api/v1/auth/logout
 router.get('/logout', LogoutUser);
 
-// get /api/api/v1/auth/getuser
+// get /api/v1/auth/getuser
 router.get('/getUser', authMiddleware, GetUser);
 
-// get /api/api/v1/auth/test
+// get /api/v1/auth/test
 router.get('/test', authMiddleware, permissonUser('admin'), (req, res) => {
   res.status(200).json({ message: 'Test success' });
 });

@@ -25,7 +25,7 @@ export const useAuthStore = defineStore("user", () => {
 			localStorage.setItem("user", JSON.stringify(data.data));
 
 			dialog.value = false;
-			console.log(data);
+			// console.log(data);
 
 			router.push({ name: "dashboard" });
 		} catch (error) {
@@ -57,7 +57,7 @@ export const useAuthStore = defineStore("user", () => {
 			localStorage.setItem("user", JSON.stringify(data.data));
 
 			dialog.value = false;
-			console.log(data);
+			// console.log(data);
 
 			router.push({ name: "dashboard" });
 		} catch (error) {
@@ -68,11 +68,11 @@ export const useAuthStore = defineStore("user", () => {
 
 	return {
 		dialog,
-		currentUser,
-		errorAlert,
-		errorMessage,
 		LoginUser,
 		LogoutUser,
 		RegisterUser,
+		currentUser,
+		errorAlert,
+		errorMessage,
 	};
 });
