@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Menubar class="bg-teal-300" :model="items">
+		<Menubar class="bg-teal-300 p-4" :model="items">
 			<template #end>
 				<Button
 					class="border-transparent"
@@ -10,11 +10,7 @@
 					@click="dialog = true"
 				/>
 				<div v-else>
-					<Button
-						class="mr-3 border-transparent"
-						label="Dashboard"
-						icon="pi pi-home"
-					/>
+					<Button class="mr-3 border-transparent" label="Dashboard" />
 					<Button
 						label="Logout"
 						class="border-transparent"

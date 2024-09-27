@@ -1,6 +1,6 @@
 <template>
 	<div v-if="user">
-		<h1>Halaman Dashboard</h1>
+		<h1 class="text-2xl font-bold">Hai 🤚</h1>
 		<h2>Selamat Datang Kembali, {{ user.name.toUpperCase() }}</h2>
 	</div>
 </template>
