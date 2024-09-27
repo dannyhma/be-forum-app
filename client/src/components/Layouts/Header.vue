@@ -20,6 +20,13 @@
 import Menubar from "primevue/menubar";
 import { ref } from "vue";
 import FormAuthComponent from "../Fragments/FormAuthComponent.vue";
+import { storeToRefs } from "pinia";
+import { useAuthStore } from "../../stores/authStores.js";
+
+const authStores = useAuthStore();
+
+// state pinia
+const { dialog } = storeToRefs(authStores);
 
 const items = ref([
 	{
@@ -49,7 +56,4 @@ const items = ref([
 		icon: "pi pi-envelope",
 	},
 ]);
-
-// state
-const dialog = ref(false);
 </script>

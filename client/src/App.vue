@@ -5,7 +5,7 @@ import { onMounted } from "vue";
 
 const getData = async () => {
 	const res = await customFetch.get("test");
-	console.log(res);
+	// console.log(res);
 };
 
 onMounted(() => {
