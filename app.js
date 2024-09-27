@@ -13,7 +13,7 @@ const app = express();
 const port = 3000;
 
 // middleware
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -32,7 +32,7 @@ mongoose
   });
 
 // endpoint
-app.get('/', (req, res) => {
+app.get('/api/v1/test', (req, res) => {
   res.status(200).json({
     message: 'message from express.js',
   });
