@@ -24,7 +24,7 @@ router.get('/:id', DetailQuestion);
 
 // update document
 // put /api/v1/question/:id
-router.put('/:id', UpdateQuestion);
+router.put('/:id', authMiddleware, UpdateQuestion);
 
 // update delete
 // put /api/v1/question/:id

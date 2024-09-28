@@ -21,6 +21,7 @@ const questionSchema = new mongoose.Schema(
       enum: ['frontend', 'backend', 'monogodb', 'expressjs', 'vuejs', 'nodejs'],
       required: [true, 'Question must be category'],
     },
+
     countVote: {
       type: Number,
       default: 0,
