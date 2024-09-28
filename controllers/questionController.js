@@ -11,19 +11,37 @@ export const CreateQuestion = asyncHandler(async (req, res) => {
     userId: req.user._id,
   });
 
-  return res.status(201).json({
+  return res.status(200).json({
     message: 'Successfully added question',
     data: newQuestion,
   });
 });
 
-export const QuestionAll = (req, res) => {
-  res.send('All Question');
-};
+export const QuestionAll = asyncHandler(async (req, res) => {
+  const questionData = await Question.find({});
 
-export const DetailQuestion = (req, res) => {
-  res.send('Detail Question');
-};
+  return res.status(200).json({
+    message: 'Successfully view all question',
+    data: questionData,
+  });
+});
+
+export const DetailQuestion = asyncHandler(async (req, res) => {
+  const idParams = req.params.id;
+
+  const questionDetail = await Question.findById(idParams);
+
+  if (!questionDetail) {
+    return res.status(404).json({
+      message: 'Question id not found',
+    });
+  }
+
+  return res.status(200).json({
+    message: 'Successfully view detail question',
+    data: questionDetail,
+  });
+});
 
 export const UpdateQuestion = (req, res) => {
   res.send('Update Question');
