@@ -28,9 +28,9 @@ export const QuestionAll = asyncHandler(async (req, res) => {
 });
 
 export const DetailQuestion = asyncHandler(async (req, res) => {
-  const { id } = req.params;
+  const paramsId = req.params.id;
 
-  const questionDetail = await Question.findById(id);
+  const questionDetail = await Question.findById(paramsId);
 
   if (!questionDetail) {
     return res.status(404).json({
@@ -46,9 +46,9 @@ export const DetailQuestion = asyncHandler(async (req, res) => {
 
 export const UpdateQuestion = asyncHandler(async (req, res) => {
   const { title, question, category } = req.body;
-  const { id } = req.params;
+  const paramsId = req.params.id;
 
-  const idQuestion = await Question.findById(id);
+  const idQuestion = await Question.findById(paramsId);
 
   if (!idQuestion) {
     res.status(404);
@@ -69,6 +69,21 @@ export const UpdateQuestion = asyncHandler(async (req, res) => {
   });
 });
 
-export const DeleteQuestion = (req, res) => {
-  res.send('Delete Question');
-};
+export const DeleteQuestion = asyncHandler(async (req, res) => {
+  const paramsId = req.params.id;
+
+  const idQuestion = await Question.findById(paramsId);
+
+  if (!idQuestion) {
+    res.status(404);
+    throw new Error('Question Id not found');
+  }
+
+  checkPermission(req.user, idQuestion.userId, res);
+
+  await Question.findByIdAndDelete(paramsId);
+
+  return res.status(200).json({
+    message: 'Successfully deleted question',
+  });
+});
