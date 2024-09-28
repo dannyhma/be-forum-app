@@ -6,6 +6,7 @@ import {
   UpdateQuestion,
   DeleteQuestion,
 } from '../controllers/questionController.js';
+import { authMiddleware, permissonUser } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ const router = express.Router();
 
 // create document
 // post /api/v1/question
-router.post('/', CreateQuestion);
+router.post('/', authMiddleware, CreateQuestion);
 
 // read document
 // get /api/v1/question
