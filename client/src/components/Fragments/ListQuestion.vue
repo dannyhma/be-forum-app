@@ -11,6 +11,16 @@
 					<span class="font-bold">Amy Elsner</span>
 				</div>
 			</template>
+			<template #icons>
+				<Button
+					icon="pi pi-cog"
+					severity="secondary"
+					rounded
+					text
+					@click="toggle"
+				/>
+				<Menu ref="menu" id="config_menu" :model="items" popup />
+			</template>
 			<template #footer>
 				<div class="flex flex-wrap items-center justify-between gap-3">
 					<div class="flex items-center gap-2">
@@ -18,7 +28,9 @@
 						<span>{{ props.data.countVote }}</span>
 					</div>
 					<i>
-						<span class="text-sm">{{ dateFormat(props.data.createdAt) }}</span>
+						<span class="text-sm">{{
+							newdateFormat(props.data.createdAt)
+						}}</span>
 					</i>
 				</div>
 			</template>
@@ -41,11 +53,43 @@
 
 <script setup>
 import { RouterLink } from "vue-router";
+import { ref } from "vue";
+import { dateFormat } from "../../utils/dateFormat.js";
 
-const dateFormat = (dataInput) => {
-	const newDate = new Date(dataInput).toLocaleString();
-	return newDate;
+const menu = ref(null);
+const toggle = (event) => {
+	menu.value.toggle(event);
 };
+
+const items = ref([
+	{
+		label: "Update",
+		icon: "pi pi-refresh",
+		command: () => {
+			const data = props.data;
+			console.log(data);
+		},
+	},
+	{
+		label: "Delete",
+		icon: "pi pi-times",
+		command: () => {
+			console.log("Delete");
+		},
+	},
+	{
+		separator: true,
+	},
+	{
+		label: "Report",
+		icon: "pi pi-flag",
+		command: () => {
+			console.log("Report");
+		},
+	},
+]);
+
+const newdateFormat = (date) => dateFormat(date);
 
 const props = defineProps({
 	data: {

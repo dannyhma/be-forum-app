@@ -5,7 +5,7 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import DetailQuestion from "../components/Fragments/DetailQuestion.vue";
+import DetailQuestion from "../components/Layouts/DetailQuestion.vue";
 import customFetch from "../api/api";
 import { ref, onMounted } from "vue";
 import LoadingSpinner from "../components/Elements/LoadingSpinner.vue";

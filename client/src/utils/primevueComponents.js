@@ -8,6 +8,7 @@ import Message from "primevue/message";
 import Editor from "primevue/editor";
 import Select from "primevue/select";
 import ProgressSpinner from "primevue/progressspinner";
+import Menu from "primevue/menu";
 
 export default {
 	Dialog,
@@ -20,4 +21,5 @@ export default {
 	Editor,
 	Select,
 	ProgressSpinner,
+  Menu,
 };

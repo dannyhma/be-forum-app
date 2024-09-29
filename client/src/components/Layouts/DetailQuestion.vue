@@ -21,7 +21,7 @@
 							</div>
 							<i>
 								<span class="text-base">
-									{{ dateFormat(props.data.createdAt) }}
+									{{ newdateFormat(props.data.createdAt) }}
 								</span>
 							</i>
 						</div>
@@ -40,10 +40,9 @@
 </template>
 
 <script setup>
-const dateFormat = (dataInput) => {
-	const newDate = new Date(dataInput).toLocaleString();
-	return newDate;
-};
+import { dateFormat } from "../../utils/dateFormat.js";
+
+const newdateFormat = (date) => dateFormat(date);
 
 const props = defineProps({
 	data: {
