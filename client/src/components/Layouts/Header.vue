@@ -17,8 +17,9 @@
 						@click="DashboardPath"
 					/>
 					<Button
-						label="Logout"
 						class="rounded-full border-transparent"
+						label="Logout"
+						icon="pi pi-sign-out"
 						severity="danger"
 						@click="LogoutUser"
 					/>

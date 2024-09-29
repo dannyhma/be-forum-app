@@ -4,5 +4,6 @@
   ],
   "singleQuote": false,
   "jsxSingleQuote": false,
-  "useTabs": true
+  "useTabs": true,
+  "trailingComma": "all"
 }
