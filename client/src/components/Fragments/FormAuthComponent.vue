@@ -1,48 +1,49 @@
 <template>
 	<Dialog
-		pt:root:class="!border-0 !bg-transparent"
+		pt:root:class="!border-1 !bg-transparent"
 		pt:mask:class="backdrop-blur-sm"
+		class="!bg-slate-100"
 	>
 		<template #container="{ closeCallback }">
 			<form @submit.prevent="handleSubmit">
-				<div class="flex flex-col gap-6 rounded-lg px-8 py-8">
+				<div class="flex max-w-sm flex-col gap-6 rounded-lg px-8 py-8">
 					<div class="mx-auto block text-white">
-						<h1 class="text-2xl font-bold text-slate-800">Logo</h1>
+						<h1 class="text-2xl font-bold text-slate-900">Logo</h1>
 					</div>
 					<AlertMessage
 						v-if="authStores.errorAlert"
 						:message="authStores.errorMessage"
-						class="max-w-full"
+						class="max-w-full p-2"
 					/>
 					<div class="inline-flex flex-col gap-2" v-if="!isLogin">
-						<label for="name" class="font-normal text-slate-800"
+						<label for="name" class="font-medium text-slate-900"
 							>Username</label
 						>
 						<InputText
 							id="name"
 							type="name"
 							v-model="userInput.name"
-							class="w-80 rounded-full !border-0 bg-slate-200 p-3 pl-4 font-normal text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-300"
+							class="w-80 rounded-full bg-slate-200 p-3 pl-4 font-normal text-slate-800 focus:border-none focus:outline-none focus:ring-2 focus:ring-teal-300"
 						></InputText>
 					</div>
 					<div class="inline-flex flex-col gap-2">
-						<label for="email" class="font-normal text-slate-800">Email</label>
+						<label for="email" class="font-medium text-slate-900">Email</label>
 						<InputText
 							id="email"
 							type="email"
 							v-model="userInput.email"
-							class="w-80 rounded-full !border-0 bg-slate-200 p-3 pl-4 font-normal text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-300"
+							class="w-80 rounded-full bg-slate-200 p-3 pl-4 font-normal text-slate-800 focus:border-none focus:outline-none focus:ring-2 focus:ring-teal-300"
 						></InputText>
 					</div>
 					<div class="inline-flex flex-col gap-2">
-						<label for="password" class="font-normal text-slate-800"
+						<label for="password" class="font-medium text-slate-900"
 							>Password</label
 						>
 						<InputText
 							id="password"
 							type="password"
 							v-model="userInput.password"
-							class="w-80 rounded-full !border-0 bg-slate-200 p-3 pl-4 font-normal text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-300"
+							class="w-80 rounded-full bg-slate-200 p-3 pl-4 font-normal text-slate-800 focus:border-none focus:outline-none focus:ring-2 focus:ring-teal-300"
 						></InputText>
 					</div>
 					<div class="flex items-center gap-4">
@@ -50,13 +51,13 @@
 							label="Cancel"
 							@click="closeCallback"
 							text
-							class="w-full rounded-full border-2 border-teal-300 !p-3 font-bold text-slate-800 hover:border-2 hover:border-teal-300 hover:bg-teal-500 hover:text-white"
+							class="w-full rounded-full border-2 border-teal-300 !p-3 text-slate-900 hover:border-2 hover:border-teal-400 hover:bg-teal-400 hover:text-white"
 						></Button>
 						<Button
 							:label="isLogin ? 'Login' : 'Register'"
 							type="submit"
 							text
-							class="w-full rounded-full border-2 border-teal-300 !p-3 font-bold text-slate-800 hover:border-teal-300 hover:bg-teal-500 hover:text-white"
+							class="w-full rounded-full border-2 border-teal-300 !p-3 text-slate-900 hover:border-2 hover:border-teal-400 hover:bg-teal-400 hover:text-white"
 						></Button>
 					</div>
 					<div class="w-full text-slate-800">

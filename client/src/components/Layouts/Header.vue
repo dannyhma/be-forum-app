@@ -1,19 +1,22 @@
 <template>
 	<div>
-		<Menubar class="bg-teal-300 p-4" :model="items">
+		<Menubar class="bg-slate-50 p-4 pr-8" :model="items">
 			<template #end>
 				<Button
-					class="border-transparent"
+					class="rounded-full border-transparent"
 					v-if="!authStores.currentUser"
 					label="Login"
 					icon="pi pi-user"
 					@click="dialog = true"
 				/>
 				<div v-else>
-					<Button class="mr-3 border-transparent" label="Dashboard" />
+					<Button
+						class="mr-3 rounded-full border-transparent"
+						label="Dashboard"
+					/>
 					<Button
 						label="Logout"
-						class="border-transparent"
+						class="rounded-full border-transparent"
 						severity="danger"
 						@click="LogoutUser"
 					/>
@@ -47,26 +50,8 @@ const items = ref([
 		icon: "pi pi-home",
 	},
 	{
-		label: "Features",
-		icon: "pi pi-star",
-	},
-	{
-		label: "Projects",
-		icon: "pi pi-search",
-		items: [
-			{
-				label: "Components",
-				icon: "pi pi-bolt",
-			},
-			{
-				label: "Blocks",
-				icon: "pi pi-server",
-			},
-		],
-	},
-	{
-		label: "Contact",
-		icon: "pi pi-envelope",
+		label: "About",
+		icon: "pi pi-about",
 	},
 ]);
 </script>
