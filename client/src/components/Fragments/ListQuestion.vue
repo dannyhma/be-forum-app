@@ -43,6 +43,19 @@
 			<p class="my-3">
 				<span v-html="props.data.question.substring(0, 1000)"></span>
 			</p>
+			<Dialog
+				v-model:visible="dialog"
+				modal
+				header="Update Question"
+				class="w-3/4"
+			>
+				<FormQuestion
+					@close="dialog = false"
+					:dataQuestion="dataQuestion"
+					:isUpdate="true"
+					@reload="reload()"
+				/>
+			</Dialog>
 			<Chip
 				:label="props.data.category"
 				class="rounded-full text-sm font-bold"
@@ -55,8 +68,17 @@
 import { RouterLink } from "vue-router";
 import { ref } from "vue";
 import { dateFormat } from "../../utils/dateFormat.js";
+import FormQuestion from "./FormQuestion.vue";
 
 const menu = ref(null);
+const dialog = ref(false);
+const dataQuestion = ref(null);
+const emit = defineEmits(["reload"]);
+
+const reload = () => {
+	emit("reload");
+};
+
 const toggle = (event) => {
 	menu.value.toggle(event);
 };
@@ -67,7 +89,9 @@ const items = ref([
 		icon: "pi pi-refresh",
 		command: () => {
 			const data = props.data;
-			console.log(data);
+			dataQuestion.value = data;
+			dialog.value = true;
+			// console.log(data);
 		},
 	},
 	{

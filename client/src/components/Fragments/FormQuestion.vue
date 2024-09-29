@@ -18,6 +18,8 @@
 				editorStyle="height: 300px"
 				class="w-full"
 				placeholder="Insert Your Question"
+				@load="onLoad"
+				@update:modelValue="onChange"
 			/>
 		</div>
 
@@ -50,11 +52,22 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import customFetch from "../../api/api";
 import AlertMessage from "../Elements/AlertMessage.vue";
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(["close", "reload"]);
+
+const props = defineProps({
+	dataQuestion: {
+		type: Object,
+		required: true,
+	},
+	isUpdate: {
+		type: Boolean,
+		default: false,
+	},
+});
 
 const question = reactive({
 	title: "",
@@ -74,20 +87,48 @@ const clearInput = () => {
 
 const handleSubmit = async () => {
 	try {
-		const newQustion = await customFetch.post("/question", {
-			title: question.title,
-			question: question.question,
-			category: question.category,
-		});
-		if (newQustion) {
-			clearInput();
-			emit("close");
-			emit("reload");
+		if (props.isUpdate) {
+			await customFetch.put(`/question/${props.dataQuestion._id}`, {
+				title: question.title,
+				question: question.question,
+				category: question.category,
+			});
+		} else {
+			await customFetch.post("/question", {
+				title: question.title,
+				question: question.question,
+				category: question.category,
+			});
 		}
+		clearInput();
+		emit("close");
+		emit("reload");
 	} catch (error) {
 		errorAlert.value = true;
 		errorMessage.value = error.response.data.message;
 	}
+};
+
+onMounted(() => {
+	if (props.dataQuestion && props.isUpdate) {
+		question.title = props.dataQuestion.title;
+		question.question = props.dataQuestion.question;
+		question.category = props.dataQuestion.category;
+	}
+});
+
+// function for Editor load event
+const onLoad = ({ instance }) => {
+	instance.setContents(
+		instance.clipboard.convert({
+			html: question.question, // bind to question.question
+		}),
+	);
+};
+
+// function for Editor change event
+const onChange = (v) => {
+	question.question = v; // update the question reactive property
 };
 
 const categories = ref([

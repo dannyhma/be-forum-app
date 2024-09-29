@@ -34,6 +34,7 @@
 						v-for="q in questions"
 						:key="q.id"
 						:data="q"
+						@reload="allQuestion()"
 					/>
 					<LoadingSpinner v-else />
 				</div>
