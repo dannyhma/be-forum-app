@@ -29,7 +29,7 @@
 				{{ props.data.title }}
 			</RouterLink>
 			<p class="my-3">
-				<span v-html="props.data.question.substring(0, 500)"></span>
+				<span v-html="props.data.question.substring(0, 1000)"></span>
 			</p>
 			<Chip
 				:label="props.data.category"

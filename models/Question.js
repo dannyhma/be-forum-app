@@ -27,6 +27,7 @@ const questionSchema = new mongoose.Schema(
         'nodejs',
         'reactjs',
         'nuxtjs',
+        'other',
       ],
       required: [true, 'Question must be category'],
     },

@@ -99,5 +99,6 @@ const categories = ref([
 	"nodejs",
 	"reactjs",
 	"nuxtjs",
+	"other",
 ]);
 </script>
