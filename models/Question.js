@@ -18,7 +18,16 @@ const questionSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ['frontend', 'backend', 'monogodb', 'expressjs', 'vuejs', 'nodejs'],
+      enum: [
+        'frontend',
+        'backend',
+        'mongodb',
+        'expressjs',
+        'vuejs',
+        'nodejs',
+        'reactjs',
+        'nuxtjs',
+      ],
       required: [true, 'Question must be category'],
     },
 
