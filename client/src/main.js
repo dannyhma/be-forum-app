@@ -8,17 +8,8 @@ import PrimeVue from "primevue/config";
 import Aura from "@primevue/themes/aura";
 import "primeicons/primeicons.css";
 
-// prime vue components
-import Dialog from "primevue/dialog";
-import Button from "primevue/button";
-import InputText from "primevue/inputtext";
-import Panel from "primevue/panel";
-import Avatar from "primevue/avatar";
-import Chip from "primevue/chip";
-import Message from "primevue/message";
-import Editor from "primevue/editor";
-import Select from "primevue/select";
-import ProgressSpinner from "primevue/progressspinner";
+// import prime vue components from utils
+import primevueComponents from "./utils/primevueComponents";
 
 // pinia
 import { createPinia } from "pinia";
@@ -44,16 +35,9 @@ pinia.use(({ store }) => {
 	store.router = markRaw(router);
 });
 
-// components
-app.component("Dialog", Dialog);
-app.component("Button", Button);
-app.component("InputText", InputText);
-app.component("Message", Message);
-app.component("Panel", Panel);
-app.component("Avatar", Avatar);
-app.component("Chip", Chip);
-app.component("Editor", Editor);
-app.component("Select", Select);
-app.component("ProgressSpinner", ProgressSpinner);
+// register prime vue components globally
+Object.values(primevueComponents).forEach((component) => {
+	app.component(component.name, component);
+});
 
 app.mount("#app");
