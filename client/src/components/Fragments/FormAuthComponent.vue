@@ -6,7 +6,7 @@
 		<template #container="{ closeCallback }">
 			<form @submit.prevent="handleSubmit">
 				<div
-					class="flex flex-col gap-6 rounded-2xl px-8 py-8"
+					class="flex max-w-sm flex-col gap-6 rounded-2xl px-8 py-8"
 					style="
 						background-image: radial-gradient(
 							circle at left top,
