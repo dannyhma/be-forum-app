@@ -12,14 +12,21 @@
 				</div>
 			</template>
 			<template #icons>
-				<Button
-					icon="pi pi-cog"
-					severity="secondary"
-					rounded
-					text
-					@click="toggle"
-				/>
-				<Menu ref="menu" id="config_menu" :model="items" popup />
+				<div
+					v-if="
+						authStore.currentUser &&
+						authStore.currentUser._id === props.data.userId
+					"
+				>
+					<Button
+						icon="pi pi-cog"
+						severity="secondary"
+						rounded
+						text
+						@click="toggle"
+					/>
+					<Menu ref="menu" id="config_menu" :model="items" popup />
+				</div>
 			</template>
 			<template #footer>
 				<div class="flex flex-wrap items-center justify-between gap-3">
@@ -69,11 +76,14 @@ import { RouterLink } from "vue-router";
 import { ref } from "vue";
 import { dateFormat } from "../../utils/dateFormat.js";
 import FormQuestion from "./FormQuestion.vue";
+import { useAuthStore } from "../../stores/authStores.js";
 
 const menu = ref(null);
 const dialog = ref(false);
 const dataQuestion = ref(null);
 const emit = defineEmits(["reload"]);
+const authStore = useAuthStore();
+import customFetch from "../../api/api.js";
 
 const reload = () => {
 	emit("reload");
@@ -97,8 +107,10 @@ const items = ref([
 	{
 		label: "Delete",
 		icon: "pi pi-times",
-		command: () => {
-			console.log("Delete");
+		command: async () => {
+			await customFetch.delete(`question/${props.data._id}`);
+			alert("Question deleted");
+			emit("reload");
 		},
 	},
 	{

@@ -2,11 +2,19 @@
 	<Dialog
 		pt:root:class="!border-1 !bg-transparent"
 		pt:mask:class="backdrop-blur-sm"
-		class="!bg-slate-100"
 	>
 		<template #container="{ closeCallback }">
 			<form @submit.prevent="handleSubmit">
-				<div class="flex max-w-sm flex-col gap-6 rounded-lg px-8 py-8">
+				<div
+					class="flex flex-col gap-6 rounded-2xl px-8 py-8"
+					style="
+						background-image: radial-gradient(
+							circle at left top,
+							var(--p-slate-50),
+							var(--p-slate-100)
+						);
+					"
+				>
 					<div class="mx-auto block text-white">
 						<h1 class="text-2xl font-bold text-slate-900">Logo</h1>
 					</div>
