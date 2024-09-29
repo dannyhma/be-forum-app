@@ -35,6 +35,7 @@
 						:key="q.id"
 						:data="q"
 					/>
+					<LoadingSpinner v-else />
 				</div>
 			</section>
 		</div>
@@ -47,6 +48,7 @@ import FormQuestion from "../components/Fragments/FormQuestion.vue";
 import { onMounted, ref } from "vue";
 import customFetch from "../api/api";
 import { useAuthStore } from "../stores/authStores";
+import LoadingSpinner from "../components/Elements/LoadingSpinner.vue";
 
 const questions = ref(null);
 const dialog = ref(false);

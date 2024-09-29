@@ -18,6 +18,7 @@ import Chip from "primevue/chip";
 import Message from "primevue/message";
 import Editor from "primevue/editor";
 import Select from "primevue/select";
+import ProgressSpinner from "primevue/progressspinner";
 
 // pinia
 import { createPinia } from "pinia";
@@ -53,5 +54,6 @@ app.component("Avatar", Avatar);
 app.component("Chip", Chip);
 app.component("Editor", Editor);
 app.component("Select", Select);
+app.component("ProgressSpinner", ProgressSpinner);
 
 app.mount("#app");
