@@ -12,7 +12,9 @@
 				<div v-else>
 					<Button
 						class="mr-3 rounded-full border-transparent"
+						icon="pi pi-home"
 						label="Dashboard"
+						@click="DashboardPath"
 					/>
 					<Button
 						label="Logout"
@@ -35,8 +37,14 @@ import { ref } from "vue";
 import FormAuthComponent from "../Fragments/FormAuthComponent.vue";
 import { storeToRefs } from "pinia";
 import { useAuthStore } from "../../stores/authStores.js";
+import { useRouter } from "vue-router";
 
 const authStores = useAuthStore();
+const router = useRouter();
+
+const DashboardPath = () => {
+	router.push({ name: "dashboard" });
+};
 
 // action pinia
 const { LogoutUser } = authStores;
@@ -48,10 +56,16 @@ const items = ref([
 	{
 		label: "Home",
 		icon: "pi pi-home",
+		command: () => {
+			router.push({ name: "home" });
+		},
 	},
 	{
 		label: "About",
-		icon: "pi pi-about",
+		icon: "pi pi-book",
+		command: () => {
+			router.push({ name: "about" });
+		},
 	},
 ]);
 </script>
