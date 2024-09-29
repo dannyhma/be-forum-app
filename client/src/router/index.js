@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../pages/HomeView.vue";
-import DahsboardView from "../pages/DashboardView.vue";
+import HomeView from "../views/HomeView.vue";
+import AboutView from "../views/AboutView.vue";
+import DahsboardView from "../views/DashboardView.vue";
+import DetailQuestionView from "../views/DetailQuestionView.vue";
 import { useAuthStore } from "../stores/authStores";
 
 const router = createRouter({
@@ -14,7 +16,7 @@ const router = createRouter({
 		{
 			path: "/about",
 			name: "about",
-			component: () => import("../pages/AboutView.vue"),
+			component: AboutView,
 		},
 		{
 			path: "/dashboard",
@@ -23,6 +25,12 @@ const router = createRouter({
 			meta: {
 				requiredAuth: true,
 			},
+		},
+		{
+			path: "/question/:id",
+			name: "detail-question",
+			component: DetailQuestionView,
+			props: true,
 		},
 	],
 });

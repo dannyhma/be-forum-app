@@ -18,15 +18,18 @@
 						<span>{{ props.data.countVote }}</span>
 					</div>
 					<i>
-						<span class="">{{ dateFormat(props.data.createdAt) }}</span>
+						<span class="text-sm">{{ dateFormat(props.data.createdAt) }}</span>
 					</i>
 				</div>
 			</template>
-			<RouterLink class="text-2xl font-medium text-primary no-underline" to="/">
+			<RouterLink
+				class="text-2xl font-medium text-primary no-underline"
+				:to="{ name: 'detail-question', params: { id: props.data._id } }"
+			>
 				{{ props.data.title }}
 			</RouterLink>
 			<p class="my-3">
-				<span v-html="props.data.question.substring(0, 250)"></span>
+				<span v-html="props.data.question.substring(0, 500)"></span>
 			</p>
 			<Chip
 				:label="props.data.category"
